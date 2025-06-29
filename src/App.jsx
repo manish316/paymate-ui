@@ -1,3 +1,4 @@
+// Paste this into src/App.jsx
 import React, { useState } from "react";
 
 export default function PayMate() {
@@ -17,53 +18,65 @@ export default function PayMate() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100 p-4">
-      <div className="bg-white rounded-2xl shadow-xl w-full max-w-md p-6">
-        <h2 className="text-xl font-semibold text-blue-600 mb-2">PayMate</h2>
-        <p className="text-gray-600 mb-6">Available Balance: <span className="font-bold text-green-600">$1,200.00</span></p>
+    <div className="min-h-screen flex items-center justify-center bg-[#f6f7fb] px-4">
+      <div className="bg-white w-full max-w-sm rounded-xl shadow-md p-6">
+        <img
+          src="https://www.paypalobjects.com/webstatic/mktg/logo/pp_cc_mark_111x69.jpg"
+          alt="PayMate"
+          className="h-10 mb-4 mx-auto"
+        />
+        <h2 className="text-lg font-semibold text-center text-gray-800 mb-1">
+          Send Payment
+        </h2>
+        <p className="text-center text-sm text-gray-500 mb-6">
+          Available balance:{" "}
+          <span className="text-green-600 font-medium">$1,200.00</span>
+        </p>
 
         {success ? (
           <div className="text-center">
             <div className="text-green-600 text-4xl mb-2">✅</div>
-            <p className="text-lg font-semibold">Transfer Successful</p>
+            <p className="text-lg font-semibold text-gray-800">
+              Transfer Complete
+            </p>
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label className="block text-sm font-medium">Recipient Email</label>
               <input
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full mt-1 border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring focus:border-blue-500"
+                placeholder="Recipient Email"
+                className="w-full border border-gray-300 rounded-md p-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                 required
               />
             </div>
             <div>
-              <label className="block text-sm font-medium">Amount</label>
               <input
                 type="number"
                 value={amount}
                 onChange={(e) => setAmount(e.target.value)}
-                className="w-full mt-1 border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring focus:border-blue-500"
+                placeholder="Amount (USD)"
+                className="w-full border border-gray-300 rounded-md p-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                 required
               />
             </div>
             <div>
-              <label className="block text-sm font-medium">Note (Optional)</label>
               <input
                 type="text"
                 value={note}
                 onChange={(e) => setNote(e.target.value)}
-                className="w-full mt-1 border border-gray-300 rounded-lg p-2 focus:outline-none"
+                placeholder="Note (Optional)"
+                className="w-full border border-gray-300 rounded-md p-2 text-sm"
               />
             </div>
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg"
+              className="w-full bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium py-2 rounded-md transition"
             >
-              {loading ? "Sending..." : "Send Payment"}
+              {loading ? "Sending..." : "Send Now"}
             </button>
           </form>
         )}
